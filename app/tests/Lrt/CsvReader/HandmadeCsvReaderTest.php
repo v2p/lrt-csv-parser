@@ -2,6 +2,7 @@
 
 namespace Lrt\CsvReader;
 
+use Lrt\CsvReader\Exceptions\FileIsNotFoundException;
 use Lrt\CsvReader\Exceptions\FileIsNotReadableException;
 use Lrt\FixtureAwareTrait;
 
@@ -19,12 +20,17 @@ class HandmadeCsvReaderTest extends \PHPUnit_Framework_TestCase
         $this->reader = new HandmadeCsvReader();
     }
 
-    public function testReadLinesFromNonExistentFileShouldThrowAnException()
+    /**
+     * @dataProvider providerForReadLinesFromNonExistentFileShouldThrowAnException
+     * @param string $fileName
+     * @param string $expectedException
+     */
+    public function testReadLinesFromNonExistentFileShouldThrowAnException($fileName, $expectedException)
     {
-        $this->expectException(FileIsNotReadableException::class);
+        $this->expectException($expectedException);
         // dev note: I prefer to use ::class constant where it's possible rather than hardcoded string
 
-        $generator = $this->reader->readLines($this->getFullPathToFixture('non-existent-file.csv'));
+        $generator = $this->reader->readLines($fileName);
 
         /**
          * Tricky place: we have to force generator execution, otherwise function (wrapped
@@ -32,6 +38,20 @@ class HandmadeCsvReaderTest extends \PHPUnit_Framework_TestCase
          * exception will not be thrown.
          */
         iterator_to_array($generator);
+    }
+
+    public function providerForReadLinesFromNonExistentFileShouldThrowAnException()
+    {
+        return [
+            [
+                $this->getFullPathToFixture('non-existent-file.csv'),
+                FileIsNotFoundException::class
+            ],
+            [
+                $this->getFullPathToFixture('some_directory'),
+                FileIsNotFoundException::class
+            ]
+        ];
     }
 
     /**
