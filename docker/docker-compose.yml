@@ -3,11 +3,16 @@ services:
   php-service:
     image: vposvistelik/php:cli-7.0-dev
     volumes:
+      - ./configs/php-service/21-xdebug.ini:/etc/php/7.0/cli/conf.d/21-xdebug.ini:ro
       - ${REAL_PATH_TO_APP}:${CLI_CONTAINER_PATH_TO_APP}
     links:
       - mysql-service
     environment:
       LOCAL_USER_ID: ${LOCAL_USER_ID}
+      XDEBUG_REMOTE_HOST: ${XDEBUG_REMOTE_HOST}
+      XDEBUG_IDE_KEY: ${XDEBUG_IDE_KEY}
+      PHP_IDE_CONFIG: "serverName=lrt-csv-parser"
+      XDEBUG_CONFIG: "idekey=PHPSTORM"
 
   composer-service:
     image: vposvistelik/php:cli-7.0-dev
