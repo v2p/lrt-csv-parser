@@ -1,0 +1,12 @@
+{
+    "name": "v2p/lrt-csv-parser",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vladimir Posvistelik",
+            "email": "v.posvistelik@gmail.com"
+        }
+    ],
+    "require": {}
+}

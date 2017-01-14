@@ -1,0 +1,59 @@
+version: '2'
+services:
+  php-service:
+    image: vposvistelik/php:cli-7.0-dev
+    volumes:
+      - ${REAL_PATH_TO_APP}:${CLI_CONTAINER_PATH_TO_APP}
+    links:
+      - mysql-service
+    environment:
+      LOCAL_USER_ID: ${LOCAL_USER_ID}
+
+  composer-service:
+    image: vposvistelik/php:cli-7.0-dev
+    volumes:
+      - ${REAL_PATH_TO_APP}:${CLI_CONTAINER_PATH_TO_APP}
+      - ./composer.phar:/bin/composer.phar
+    environment:
+      LOCAL_USER_ID: ${LOCAL_USER_ID}
+
+  mysql-service:
+    image: mysql:5.6
+    volumes:
+      - mysql-data-volume:/var/lib/mysql
+    restart: on-failure
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - "3306:3306"
+
+  nginx-service:
+    image: vposvistelik/nginx:1.10-dev
+    volumes:
+      - ./services-configs/nginx/conf.d:/etc/nginx/conf.d:ro
+      - ${REAL_PATH_TO_APP}:${WEB_CONTAINER_PATH_TO_APP}
+    links:
+      - fpm-service
+    depends_on:
+      - fpm-service
+      - mysql-service
+    restart: on-failure
+    ports:
+      - "80:80"
+    environment:
+      LOCAL_USER_ID: ${LOCAL_USER_ID}
+
+  fpm-service:
+    image: vposvistelik/php:fpm-7.0-dev
+    volumes:
+      - ${REAL_PATH_TO_APP}:${WEB_CONTAINER_PATH_TO_APP}
+    links:
+      - mysql-service
+    restart: on-failure
+    environment:
+      LOCAL_USER_ID: ${LOCAL_USER_ID}
+      XDEBUG_REMOTE_HOST: ${XDEBUG_REMOTE_HOST}
+      XDEBUG_IDE_KEY: ${XDEBUG_IDE_KEY}
+
+volumes:
+  mysql-data-volume:
