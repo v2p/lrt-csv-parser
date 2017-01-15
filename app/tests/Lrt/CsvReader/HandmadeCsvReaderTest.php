@@ -2,9 +2,9 @@
 
 namespace Lrt\CsvReader;
 
-use Lrt\CsvReader\Exceptions\FileIsNotFoundException;
-use Lrt\CsvReader\Exceptions\FileIsNotReadableException;
 use Lrt\FixtureAwareTrait;
+use Lrt\ImportFileReader\Exceptions\FileIsNotFoundException;
+use Lrt\ImportFileReader\Exceptions\FileIsNotReadableException;
 use org\bovigo\vfs\vfsStream;
 
 class HandmadeCsvReaderTest extends \PHPUnit_Framework_TestCase

@@ -1,8 +1,8 @@
 <?php
 
-namespace Lrt\CsvReader;
+namespace Lrt\ImportFileReader;
 
-interface CsvReaderInterface
+interface ImportFileReaderInterface
 {
     /**
      * @param string $filePath

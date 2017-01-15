@@ -2,10 +2,11 @@
 
 namespace Lrt\CsvReader;
 
-use Lrt\CsvReader\Exceptions\FileIsNotFoundException;
-use Lrt\CsvReader\Exceptions\FileIsNotReadableException;
+use Lrt\ImportFileReader\Exceptions\FileIsNotFoundException;
+use Lrt\ImportFileReader\Exceptions\FileIsNotReadableException;
+use Lrt\ImportFileReader\ImportFileReaderInterface;
 
-class HandmadeCsvReader implements CsvReaderInterface
+class HandmadeCsvReader implements ImportFileReaderInterface
 {
     /**
      * @param string $filePath
