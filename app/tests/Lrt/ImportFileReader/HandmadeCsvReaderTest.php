@@ -1,6 +1,6 @@
 <?php
 
-namespace Lrt\CsvReader;
+namespace Lrt\ImportFileReader;
 
 use Lrt\FixtureAwareTrait;
 use Lrt\ImportFileReader\Exceptions\FileIsNotFoundException;
@@ -29,7 +29,6 @@ class HandmadeCsvReaderTest extends \PHPUnit_Framework_TestCase
     public function testReadLinesFromNonExistentFileShouldThrowAnException($fileName, $expectedException)
     {
         $this->expectException($expectedException);
-        // dev note: I prefer to use ::class constant where it's possible rather than hardcoded string
 
         $generator = $this->reader->readLines($fileName);
 

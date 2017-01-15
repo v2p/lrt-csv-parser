@@ -1,10 +1,9 @@
 <?php
 
-namespace Lrt\CsvReader;
+namespace Lrt\ImportFileReader;
 
 use Lrt\ImportFileReader\Exceptions\FileIsNotFoundException;
 use Lrt\ImportFileReader\Exceptions\FileIsNotReadableException;
-use Lrt\ImportFileReader\ImportFileReaderInterface;
 
 class HandmadeCsvReader implements ImportFileReaderInterface
 {
@@ -16,11 +15,11 @@ class HandmadeCsvReader implements ImportFileReaderInterface
     public function readLines($filePath, $delimiter = ',')
     {
         if (!is_file($filePath)) {
-            throw new FileIsNotFoundException();
+            throw new FileIsNotFoundException('File is not found');
         }
 
         if (!is_readable($filePath)) {
-            throw new FileIsNotReadableException();
+            throw new FileIsNotReadableException('File is not readable');
         }
 
         $fileResource = fopen($filePath, 'r');
