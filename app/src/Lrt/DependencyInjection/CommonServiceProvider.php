@@ -13,6 +13,9 @@ use Symfony\Component\Console\Input\InputInterface;
 
 class CommonServiceProvider extends AbstractServiceProvider
 {
+    const SERVICE_LOGGER = 'logger';
+    const SERVICE_CONSOLE_APPLICATION = 'consoleApplication';
+
     /**
      * Registers services on the given container.
      *
@@ -23,7 +26,7 @@ class CommonServiceProvider extends AbstractServiceProvider
      */
     public function register(Container $pimple)
     {
-        $pimple['logger'] = function() {
+        $pimple[self::SERVICE_LOGGER] = function() {
             $logger = new Logger('logger');
 
             $loggerHandler = new StreamHandler('php://stdout', Logger::INFO);
@@ -36,7 +39,7 @@ class CommonServiceProvider extends AbstractServiceProvider
             return $logger;
         };
 
-        $pimple['consoleApplication'] = function(Container $c) {
+        $pimple[self::SERVICE_CONSOLE_APPLICATION] = function(Container $c) {
             $application = new Application('lrt-csv-importer', '1.0.0');
 
             $application
@@ -44,7 +47,7 @@ class CommonServiceProvider extends AbstractServiceProvider
                 ->addArgument('file', InputArgument::REQUIRED)
                 ->setCode(function(InputInterface $input/*, OutputInterface $output*/) use ($c) {
                     /** @var Importer $importer */
-                    $importer = $c['csv.importer'];
+                    $importer = $c[CsvServiceProvider::SERVICE_CSV_IMPORTER];
                     $importer->run(
                         $input->getArgument('file')
                     );

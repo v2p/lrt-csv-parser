@@ -10,6 +10,10 @@ use Pimple\ServiceProviderInterface;
 
 class CsvServiceProvider implements ServiceProviderInterface
 {
+    const SERVICE_CSV_LINE_PROCESSOR = 'csv.lineProcessor';
+    const SERVICE_CSV_READER = 'csv.reader';
+    const SERVICE_CSV_IMPORTER = 'csv.importer';
+
     /**
      * Registers services on the given container.
      *
@@ -20,22 +24,22 @@ class CsvServiceProvider implements ServiceProviderInterface
      */
     public function register(Container $pimple)
     {
-        $pimple['csv.reader'] = function () {
+        $pimple[self::SERVICE_CSV_READER] = function () {
             return new HandmadeCsvReader();
         };
 
-        $pimple['csv.lineProcessor'] = function (Container $c) {
+        $pimple[self::SERVICE_CSV_LINE_PROCESSOR] = function (Container $c) {
             $lineProcessor = new CsvLineProcessor();
-            $lineProcessor->setLogger($c['logger']);
+            $lineProcessor->setLogger($c[CommonServiceProvider::SERVICE_LOGGER]);
 
             return $lineProcessor;
         };
 
-        $pimple['csv.importer'] = function(Container $c) {
+        $pimple[self::SERVICE_CSV_IMPORTER] = function(Container $c) {
             return new Importer(
-                $c['csv.reader'],
-                $c['csv.lineProcessor'],
-                $c['logger']
+                $c[self::SERVICE_CSV_READER],
+                $c[self::SERVICE_CSV_LINE_PROCESSOR],
+                $c[CommonServiceProvider::SERVICE_LOGGER]
             );
         };
     }
