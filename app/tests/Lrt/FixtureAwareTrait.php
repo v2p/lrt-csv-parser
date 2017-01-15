@@ -5,11 +5,13 @@ namespace Lrt;
 trait FixtureAwareTrait
 {
     /**
-     * @param string $fileName
+     * Generate full path to fixture file / directory which belongs to concrete test case
+     *
+     * @param string $fileOrDirectoryName
      * @return string
      */
-    protected function getFullPathToFixture($fileName)
+    protected function getFullPathToFixture($fileOrDirectoryName)
     {
-        return TESTS_DIR . '/' . str_replace('\\', '/', __CLASS__) . '/fixtures/' . $fileName;
+        return TESTS_DIR . '/' . str_replace('\\', '/', __CLASS__) . '/fixtures/' . $fileOrDirectoryName;
     }
 }
