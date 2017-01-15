@@ -1,17 +1,22 @@
 <?php
 
+use Lrt\DependencyInjection\CommonServiceProvider;
+use Lrt\DependencyInjection\ContainerFactory;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Console\Application;
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
 $configuration = require_once __DIR__ . '/../config/cli.php';
 
-$container = (new \Lrt\DependencyInjection\ContainerFactory())
+$container = (new ContainerFactory())
     ->create($configuration);
 
-/** @var \Symfony\Component\Console\Application $application */
-$application = $container['consoleApplication'];
+/** @var Application $application */
+$application = $container[CommonServiceProvider::SERVICE_CONSOLE_APPLICATION];
 
-/** @var \Psr\Log\LoggerInterface $logger */
-$logger = $container['logger'];
+/** @var LoggerInterface $logger */
+$logger = $container[CommonServiceProvider::SERVICE_LOGGER];
 
 try {
     $application->setCatchExceptions(false);
