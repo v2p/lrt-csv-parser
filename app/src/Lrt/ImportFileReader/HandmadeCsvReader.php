@@ -24,8 +24,10 @@ class HandmadeCsvReader implements ImportFileReaderInterface
 
         $fileResource = fopen($filePath, 'r');
 
+        $lineIndex = 0;
         while (($data = fgetcsv($fileResource, null, $delimiter)) !== false) {
-            yield $data;
+            yield $lineIndex => $data;
+            $lineIndex++;
         }
 
         fclose($fileResource);

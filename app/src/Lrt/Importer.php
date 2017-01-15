@@ -42,8 +42,8 @@ class Importer
     public function run($inputFile)
     {
         try {
-            foreach ($this->importFileReader->readLines($inputFile) as $line) {
-                $this->lineProcessor->processValues($line);
+            foreach ($this->importFileReader->readLines($inputFile) as $index => $line) {
+                $this->lineProcessor->processValues($index, $line);
             }
         } catch (ImportFileReaderExceptionInterface $exception) {
             $this->logger->error($exception->getMessage());
