@@ -75,8 +75,7 @@ class HandmadeCsvReaderTest extends \PHPUnit_Framework_TestCase
         $fixtureFilePath = $this->getFullPathToFixture($fixtureFilename);
 
         $actualResult = iterator_to_array(
-            $this->reader->readLines($fixtureFilePath),
-            false
+            $this->reader->readLines($fixtureFilePath)
         );
 
         $this->assertEquals($expectedResult, $actualResult);
@@ -98,6 +97,14 @@ class HandmadeCsvReaderTest extends \PHPUnit_Framework_TestCase
             [
                 'case2_empty.csv',
                 []
+            ],
+            [
+                'case3_utf.csv',
+                [
+                    ['ハリファックス銀行がペナルティを受けたという疑惑'],
+                    ['Привет', ' разработчик!'],
+                    ['µ','¶']
+                ]
             ]
         ];
     }
