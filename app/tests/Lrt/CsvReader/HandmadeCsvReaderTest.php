@@ -5,6 +5,7 @@ namespace Lrt\CsvReader;
 use Lrt\CsvReader\Exceptions\FileIsNotFoundException;
 use Lrt\CsvReader\Exceptions\FileIsNotReadableException;
 use Lrt\FixtureAwareTrait;
+use org\bovigo\vfs\vfsStream;
 
 class HandmadeCsvReaderTest extends \PHPUnit_Framework_TestCase
 {
@@ -42,6 +43,13 @@ class HandmadeCsvReaderTest extends \PHPUnit_Framework_TestCase
 
     public function providerForReadLinesFromNonExistentFileShouldThrowAnException()
     {
+        $virtualDirectory = vfsStream::setup($this->getFullPathToFixture('subDirectory'));
+        $noReadPermissions = 0333; // equals to -wx-wx-wx
+
+        $virtualNonReadableFile = vfsStream::newFile('virtual-non-readable-file.csv', $noReadPermissions)
+            ->at($virtualDirectory)
+            ->url();
+
         return [
             [
                 $this->getFullPathToFixture('non-existent-file.csv'),
@@ -50,6 +58,10 @@ class HandmadeCsvReaderTest extends \PHPUnit_Framework_TestCase
             [
                 $this->getFullPathToFixture('some_directory'),
                 FileIsNotFoundException::class
+            ],
+            [
+                $virtualNonReadableFile,
+                FileIsNotReadableException::class
             ]
         ];
     }
