@@ -2,11 +2,11 @@
 
 return [
     'entityManager.db' => [
-        'host'     => 'mysql-service', // in case of Docker
+        'host'     => getenv('MYSQL_HOST'),
         'driver'   => 'pdo_mysql',
-        'user'     => 'user',
-        'password' => 'password',
-        'dbname'   => 'database',
+        'user'     => getenv('MYSQL_USER'),
+        'password' => getenv('MYSQL_PASSWORD'),
+        'dbname'   => getenv('MYSQL_DATABASE'),
     ],
     'entityManager.pathToEntityFiles' => __DIR__ . '/../src/Lrt/Entities'
 ];

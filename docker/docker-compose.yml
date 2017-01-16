@@ -11,8 +11,13 @@ services:
       LOCAL_USER_ID: ${LOCAL_USER_ID}
       XDEBUG_REMOTE_HOST: ${XDEBUG_REMOTE_HOST}
       XDEBUG_IDE_KEY: ${XDEBUG_IDE_KEY}
-      PHP_IDE_CONFIG: "serverName=lrt-csv-parser"
-      XDEBUG_CONFIG: "idekey=PHPSTORM"
+      PHP_IDE_CONFIG: "serverName=${COMPOSE_PROJECT_NAME}"
+      XDEBUG_CONFIG: "idekey=${XDEBUG_IDE_KEY}"
+      # use environment variables to make configuration more flexible (according to "12 factor app" methodology):
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
 
   composer-service:
     image: vposvistelik/php:cli-7.0-dev
