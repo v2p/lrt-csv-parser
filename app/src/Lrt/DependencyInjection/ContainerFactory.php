@@ -15,6 +15,7 @@ class ContainerFactory
         $container = new Container();
         $container->register(new CommonServiceProvider($config));
         $container->register(new CsvServiceProvider($config));
+        $container->register(new DataStorageServiceProvider($config));
 
         return $container;
     }

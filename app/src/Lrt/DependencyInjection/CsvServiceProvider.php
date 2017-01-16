@@ -28,17 +28,15 @@ class CsvServiceProvider implements ServiceProviderInterface
             return new HandmadeCsvReader();
         };
 
-        $pimple[self::SERVICE_CSV_LINE_PROCESSOR] = function (Container $c) {
-            $lineProcessor = new CsvLineProcessor();
-            $lineProcessor->setLogger($c[CommonServiceProvider::SERVICE_LOGGER]);
-
-            return $lineProcessor;
+        $pimple[self::SERVICE_CSV_LINE_PROCESSOR] = function () {
+            return new CsvLineProcessor();
         };
 
         $pimple[self::SERVICE_CSV_IMPORTER] = function(Container $c) {
             return new Importer(
                 $c[self::SERVICE_CSV_READER],
                 $c[self::SERVICE_CSV_LINE_PROCESSOR],
+                $c[DataStorageServiceProvider::SERVICE_MYSQL_STORAGE],
                 $c[CommonServiceProvider::SERVICE_LOGGER]
             );
         };

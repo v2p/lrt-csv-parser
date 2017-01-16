@@ -2,13 +2,12 @@
 
 namespace Lrt\LineProcessor;
 
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
+use Lrt\Entities\DataItem;
+use Lrt\LineProcessor\Exceptions\NonValidLineException;
+use NumberFormatter;
 
-class CsvLineProcessor implements LineProcessorInterface, LoggerAwareInterface
+class CsvLineProcessor implements LineProcessorInterface
 {
-    use LoggerAwareTrait;
-
     const COLUMN_FAVORITES = 0;
     const COLUMN_FROM_URL = 1;
     const COLUMN_TO_URL = 2;
@@ -24,14 +23,34 @@ class CsvLineProcessor implements LineProcessorInterface, LoggerAwareInterface
     const COLUMN_IP = 12;
     const COLUMN_COUNTRY = 13;
 
+    const CSV_HEADER_LINE_INDEX = 0;
+
+    /**
+     * @var NumberFormatter
+     */
+    private $decimalNumberFormatter;
+
+    public function __construct()
+    {
+        $this->decimalNumberFormatter = new NumberFormatter('de_DE', NumberFormatter::DECIMAL);
+    }
+
     /**
      * @param $index 0-based index of current line in source file
      * @param array $line
+     * @return DataItem
      */
-    public function processValues($index, array $line)
+    public function createDataItem($index, array $line)
     {
-        $this->logger->info(
-            $this->extractValue(self::COLUMN_ANCHOR_TEXT, $line)
+        if ($index == self::CSV_HEADER_LINE_INDEX) {
+            throw new NonValidLineException('Skip header line');
+        }
+
+        return new DataItem(
+            $this->extractValue(self::COLUMN_ANCHOR_TEXT, $line),
+            $this->extractValue(self::COLUMN_LINK_STATUS, $line),
+            $this->extractValue(self::COLUMN_FROM_URL, $line),
+            $this->extractBLDom($line)
         );
     }
 
@@ -46,5 +65,12 @@ class CsvLineProcessor implements LineProcessorInterface, LoggerAwareInterface
         return array_key_exists($columnIndex, $line)
             ? $line[$columnIndex]
             : $default;
+    }
+
+    private function extractBLDom($line)
+    {
+        $value = $this->extractValue(self::COLUMN_BLDOM, $line);
+
+        return $this->decimalNumberFormatter->parse($value);
     }
 }

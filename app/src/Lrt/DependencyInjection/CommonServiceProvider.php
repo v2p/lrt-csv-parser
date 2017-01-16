@@ -28,13 +28,12 @@ class CommonServiceProvider extends AbstractServiceProvider
     {
         $pimple[self::SERVICE_LOGGER] = function() {
             $logger = new Logger('logger');
+            $loggerFormatter = new LineFormatter("[%datetime%] %message%\n");
 
-            $loggerHandler = new StreamHandler('php://stdout', Logger::INFO);
-            $loggerHandler->setFormatter(
-                new LineFormatter("[%datetime%] %message%\n")
-            );
+            $infoHandler = new StreamHandler('php://stdout', Logger::INFO);
+            $infoHandler->setFormatter($loggerFormatter);
 
-            $logger->pushHandler($loggerHandler);
+            $logger->pushHandler($infoHandler);
 
             return $logger;
         };

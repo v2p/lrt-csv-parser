@@ -2,11 +2,14 @@
 
 namespace Lrt\LineProcessor;
 
+use Lrt\Entities\DataItem;
+
 interface LineProcessorInterface
 {
     /**
      * @param $index 0-based index of current line in source file
      * @param array $line
+     * @return DataItem
      */
-    public function processValues($index, array $line);
+    public function createDataItem($index, array $line);
 }
