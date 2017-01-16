@@ -8,5 +8,6 @@ return [
         'password' => getenv('MYSQL_PASSWORD'),
         'dbname'   => getenv('MYSQL_DATABASE'),
     ],
-    'entityManager.pathToEntityFiles' => __DIR__ . '/../src/Lrt/Entities'
+    'entityManager.pathToEntityFiles' => __DIR__ . '/../src/Lrt/Entities',
+    'templateEngine.pathToTemplates' => __DIR__ . '/../views'
 ];

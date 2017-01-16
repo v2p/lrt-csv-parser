@@ -38,12 +38,12 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
-      - "3306:3306"
+      - "3307:3306"
 
   nginx-service:
     image: vposvistelik/nginx:1.10-dev
     volumes:
-      - ./services-configs/nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./configs/nginx-service/conf.d:/etc/nginx/conf.d:ro
       - ${REAL_PATH_TO_APP}:${WEB_CONTAINER_PATH_TO_APP}
     links:
       - fpm-service
@@ -52,7 +52,7 @@ services:
       - mysql-service
     restart: on-failure
     ports:
-      - "80:80"
+      - "8080:8080"
     environment:
       LOCAL_USER_ID: ${LOCAL_USER_ID}
 

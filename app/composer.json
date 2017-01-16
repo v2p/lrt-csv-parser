@@ -13,7 +13,9 @@
         "monolog/monolog": "^1.22",
         "symfony/console": "^3.2",
         "doctrine/orm": "^2.5",
-        "ext-intl": "*"
+        "ext-intl": "*",
+        "silex/silex": "^2.0",
+        "twig/twig": "^2.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7",
