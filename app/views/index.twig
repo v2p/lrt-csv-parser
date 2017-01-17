@@ -32,9 +32,19 @@
                         "animation": false,
                         "type": "pie"
                     },
-                    "title": false,
+                    "title": {
+                        "text": "Link Status"
+                    },
                     "tooltip": {"pointFormat": "{point.percentage:.1f}%"},
-                    "plotOptions": {"pie": {"allowPointSelect": false, "dataLabels": false}}
+                    "plotOptions": {
+                        "pie": {
+                            "allowPointSelect": false,
+                            "dataLabels": {
+                                "enabled": true,
+                                "format": "<b>{point.name}</b>: {point.percentage:.1f} %"
+                            }
+                        }
+                    }
                 },
                 {{ linkStatusChartConfig | raw }}
             );
@@ -42,6 +52,9 @@
             buildChart(
                 "fromUrlChart",
                 {
+                    "title": {
+                        "text": "\"From URL\" grouped by host",
+                    },
                     "chart": {
                         "plotBackgroundColor": null,
                         "plotBorderWidth": null,
@@ -49,11 +62,11 @@
                         "animation": false,
                         "type": "pie"
                     },
-                    "title": false,
                     "tooltip": {"pointFormat": "{point.percentage:.1f}%"},
                     "plotOptions": {
                         "pie": {
                             "allowPointSelect": false,
+                            "animation": false,
                             "dataLabels": {
                                 "formatter": function() {
                                     if (this.percentage > 7) {
@@ -74,12 +87,24 @@
                         "plotBackgroundColor": null,
                         "plotBorderWidth": null,
                         "plotShadow": false,
-                        "animation": false,
+                        "animation": true,
                         "type": "column"
                     },
-                    "title": false,
+                    "title": {
+                        "text": "\"BLdom\" grouped by defined classes"
+                    },
+                    "xAxis": {
+                        "crosshair": true
+                    },
+                    "yAxis": {
+                        "min": 0
+                    },
                     "plotOptions": {"column": {"pointPadding": 0.2, "borderWidth": 0}},
-                    "legend": false
+                    "legend": false,
+                    "tooltip": {
+                        "headerFormat": "",
+                        "pointFormat": "{point.y}"
+                    }
                 },
                 {{ bldomByRangeChartConfig | raw }}
             )

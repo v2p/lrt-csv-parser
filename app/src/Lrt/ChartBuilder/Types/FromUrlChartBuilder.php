@@ -17,14 +17,10 @@ class FromUrlChartBuilder extends AbstractDataItemChartBuilder
         }, $allItems);
 
         $config = [];
-
-        $config['title']['text'] = '"From URL" grouped by host';
-
-        $config['series'][0]['data'] = $data;
-        $config['series'][0]['turboThreshold'] = 0;
-
-        $config['plotOptions']['pie']['allowPointSelect'] = false;
-        $config['plotOptions']['pie']['animation'] = false;
+        $config['series'][0] = [
+            'data' => $data,
+            'turboThreshold' => 0,
+        ];
 
         return $this->toJson($config);
     }

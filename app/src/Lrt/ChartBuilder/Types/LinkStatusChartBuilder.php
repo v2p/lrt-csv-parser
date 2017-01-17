@@ -16,17 +16,7 @@ class LinkStatusChartBuilder extends AbstractDataItemChartBuilder
         }, $allItems);
 
         $config = [];
-
-        $config['title']['text'] = '"Link Status"';
-
         $config['series'][0]['data'] = $data;
-        $config['plotOptions']['pie']['dataLabels'] = [
-            'enabled' => true,
-            'format' => '<b>{point.name}</b>: {point.percentage:.1f} %',
-            'style' => [
-                'color' => 'black',
-            ],
-        ];
 
         return $this->toJson($config);
     }
