@@ -37,3 +37,8 @@ have any integration / MySQL DBUnit tests.
 - “Link Status” (pie or donut chart)
 - “From URL” grouped by host (pie or donut chart)
 - “BLdom” grouped by defined classes [0|1 - 10|11 - 100|\\< 1,000|\\< 10,000|\\< 100,000|\\> 100,000] (bar chart)
+
+### Note about docker/ subdirectory
+
+This is my current docker configuration used for development purposes. Left just as an example. Distributed according to 
+WTFPL license.
