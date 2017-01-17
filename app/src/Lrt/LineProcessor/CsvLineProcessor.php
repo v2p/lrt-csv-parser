@@ -2,7 +2,7 @@
 
 namespace Lrt\LineProcessor;
 
-use Lrt\Entities\DataItem;
+use Lrt\Entity\DataItem;
 use Lrt\LineProcessor\Exceptions\NonValidLineException;
 use NumberFormatter;
 

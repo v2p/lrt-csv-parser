@@ -2,7 +2,7 @@
 
 namespace Lrt\DataStorage;
 
-use Lrt\Entities\DataItem;
+use Lrt\Entity\DataItem;
 
 interface DataStorageInterface
 {

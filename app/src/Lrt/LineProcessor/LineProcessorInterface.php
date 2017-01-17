@@ -2,7 +2,7 @@
 
 namespace Lrt\LineProcessor;
 
-use Lrt\Entities\DataItem;
+use Lrt\Entity\DataItem;
 
 interface LineProcessorInterface
 {

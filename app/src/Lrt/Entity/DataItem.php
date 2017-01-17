@@ -1,10 +1,10 @@
 <?php
 
-namespace Lrt\Entities;
+namespace Lrt\Entity;
 
 /**
  * @Entity(readOnly=true)
- * @Entity(repositoryClass="Lrt\Repositories\DataItemRepository")
+ * @Entity(repositoryClass="Lrt\Repository\DataItemRepository")
  * @Table(name="data_item")
  */
 class DataItem

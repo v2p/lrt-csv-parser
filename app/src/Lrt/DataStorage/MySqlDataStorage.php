@@ -3,7 +3,7 @@
 namespace Lrt\DataStorage;
 
 use Doctrine\ORM\EntityManager;
-use Lrt\Entities\DataItem;
+use Lrt\Entity\DataItem;
 
 class MySqlDataStorage implements DataStorageInterface
 {
