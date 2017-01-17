@@ -11,7 +11,7 @@ class FromUrlChartBuilder extends AbstractDataItemChartBuilder
 
         $data = array_map(function ($item) {
             return [
-                'name' => utf8_encode($item['host']),
+                'name' => $item['host'],
                 'y' => (int)$item['count'],
             ];
         }, $allItems);

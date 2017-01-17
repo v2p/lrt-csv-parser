@@ -10,7 +10,7 @@ class LinkStatusChartBuilder extends AbstractDataItemChartBuilder
 
         $data = array_map(function ($item) {
             return [
-                'name' => utf8_encode($item['text']),
+                'name' => $item['text'],
                 'y' => (int)$item['count'],
             ];
         }, $allItems);
