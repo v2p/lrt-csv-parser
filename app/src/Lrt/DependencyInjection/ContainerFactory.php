@@ -16,6 +16,7 @@ class ContainerFactory
         $container->register(new CommonServiceProvider($config));
         $container->register(new CsvServiceProvider($config));
         $container->register(new DataStorageServiceProvider($config));
+        $container->register(new ChartBuilderServiceProvider($config));
 
         return $container;
     }

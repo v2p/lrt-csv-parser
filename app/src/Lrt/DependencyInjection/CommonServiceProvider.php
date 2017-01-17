@@ -2,6 +2,7 @@
 
 namespace Lrt\DependencyInjection;
 
+use Lrt\ChartBuilder\ChartBuilderFactory;
 use Lrt\Importer;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\StreamHandler;
@@ -102,10 +103,13 @@ class CommonServiceProvider extends AbstractServiceProvider
             /** @var Twig_Environment $templateEngine */
             $templateEngine = $c[self::SERVICE_TEMPLATE_ENGINE];
 
+            /** @var ChartBuilderFactory $chartBuilderFactory */
+            $chartBuilderFactory = $c[ChartBuilderServiceProvider::SERVICE_CHART_BUILDER_FACTORY];
+
             $application = new \Silex\Application();
-            $application->get('/', function () use ($templateEngine) {
+            $application->get('/', function () use ($templateEngine, $chartBuilderFactory) {
                 return $templateEngine->render('index.twig', [
-                    'anchorChartData' => [1, 2, 3]
+                    'anchorChartData' => $chartBuilderFactory->getChartBuilder('anchorText')->buildChartData()
                 ]);
             });
 

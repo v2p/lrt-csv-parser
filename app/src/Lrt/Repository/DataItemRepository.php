@@ -19,7 +19,7 @@ class DataItemRepository extends EntityRepository
         $sql = <<<'SQL'
         SELECT 
           COUNT(*) AS count, 
-          lower(anchor_text) AS item                       
+          lower(anchor_text) AS text                       
         FROM data_item
         GROUP BY lower(anchor_text)
 SQL;

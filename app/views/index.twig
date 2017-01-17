@@ -16,10 +16,7 @@
         $(document).ready(function () {
             buildTagsCloud(
                 $("#anchorTextChart"),
-                [
-                    {text: "Ipsum", weight: 10.5},
-                    {text: "Dolor", weight: 9.4}
-                ]
+                {{ anchorChartData | raw }}
             );
 
             buildPieChart(
