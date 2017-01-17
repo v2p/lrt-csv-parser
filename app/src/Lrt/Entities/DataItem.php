@@ -4,6 +4,7 @@ namespace Lrt\Entities;
 
 /**
  * @Entity(readOnly=true)
+ * @Entity(repositoryClass="Lrt\Repositories\DataItemRepository")
  * @Table(name="data_item")
  */
 class DataItem
