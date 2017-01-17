@@ -13,7 +13,7 @@ if [ "${REPLY}" != "y" ]; then
 fi
 
 cd app &&
-php composer.phar install &&
+php composer.phar install --no-dev &&
 php vendor/bin/doctrine orm:schema-tool:drop --force &&
 php vendor/bin/doctrine orm:schema-tool:update --force &&
 php cli/main.php data/main.csv &&
