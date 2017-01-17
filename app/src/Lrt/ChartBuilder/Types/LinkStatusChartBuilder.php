@@ -17,6 +17,8 @@ class LinkStatusChartBuilder extends AbstractDataItemChartBuilder
 
         $config = [];
 
+        $config['title']['text'] = '"Link Status"';
+
         $config['series'][0]['data'] = $data;
         $config['plotOptions']['pie']['dataLabels'] = [
             'enabled' => true,

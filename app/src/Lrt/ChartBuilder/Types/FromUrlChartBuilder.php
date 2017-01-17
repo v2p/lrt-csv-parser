@@ -18,6 +18,8 @@ class FromUrlChartBuilder extends AbstractDataItemChartBuilder
 
         $config = [];
 
+        $config['title']['text'] = '"From URL" grouped by host';
+
         $config['series'][0]['data'] = $data;
         $config['series'][0]['turboThreshold'] = 0;
 

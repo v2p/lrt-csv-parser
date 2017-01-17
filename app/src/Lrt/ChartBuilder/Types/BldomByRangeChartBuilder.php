@@ -30,6 +30,7 @@ class BldomByRangeChartBuilder extends AbstractDataItemChartBuilder
 
         $config = [];
 
+        $config['title']['text'] = '"BLdom" grouped by defined classes';
         $config['chart']['animation'] = true;
         $config['xAxis']['categories'] = $xAxisCategories;
         $config['xAxis']['crosshair'] = true;
