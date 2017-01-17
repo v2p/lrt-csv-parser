@@ -36,7 +36,7 @@ have any integration / MySQL DBUnit tests.
 - “Anchor Text” grouped by values converted to lowercase (word / tag cloud chart)
 - “Link Status” (pie or donut chart)
 - “From URL” grouped by host (pie or donut chart)
-- “BLdom” grouped by defined classes [0|1 - 10|11 - 100|\\< 1,000|\\< 10,000|\\< 100,000|\\> 100,000] (bar chart)
+- “BLdom” grouped by defined classes [0|1 - 10|11 - 100|\\< 1,000|\\< 10,000|\\< 100,000|\\> 100,000] \(bar chart\)
 
 ### Note about docker/ subdirectory
 
