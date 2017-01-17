@@ -2,12 +2,8 @@
 
 namespace Lrt\ChartBuilder\Types;
 
-use Lrt\ChartBuilder\PieChartAwareTrait;
-
 class LinkStatusChartBuilder extends AbstractDataItemChartBuilder
 {
-    use PieChartAwareTrait;
-
     public function buildChartConfig()
     {
         $allItems = $this->dataItemRepository->getLinkStatusGrouped();
@@ -19,10 +15,9 @@ class LinkStatusChartBuilder extends AbstractDataItemChartBuilder
             ];
         }, $allItems);
 
-        $config = $this->getPieChartDefaultConfiguration();
+        $config = [];
 
         $config['series'][0]['data'] = $data;
-
         $config['plotOptions']['pie']['dataLabels'] = [
             'enabled' => true,
             'format' => '<b>{point.name}</b>: {point.percentage:.1f} %',

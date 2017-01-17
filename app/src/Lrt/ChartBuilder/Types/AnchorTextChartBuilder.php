@@ -8,6 +8,10 @@ class AnchorTextChartBuilder extends AbstractDataItemChartBuilder
     {
         $allItems = $this->dataItemRepository->getAnchorsTextGrouped();
 
+        /**
+         * Data structure dictated by used charting plugin:
+         * http://mistic100.github.io/jQCloud/#usage
+         */
         $data = array_map(function($item) {
             return [
                 'text' => utf8_encode($item['text']),

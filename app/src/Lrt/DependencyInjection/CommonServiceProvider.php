@@ -103,15 +103,23 @@ class CommonServiceProvider extends AbstractServiceProvider
             /** @var Twig_Environment $templateEngine */
             $templateEngine = $c[self::SERVICE_TEMPLATE_ENGINE];
 
-            /** @var ChartBuilderFactory $chartBuilderFactory */
-            $chartBuilderFactory = $c[ChartBuilderServiceProvider::SERVICE_CHART_BUILDER_FACTORY];
+            /** @var ChartBuilderFactory $factory */
+            $factory = $c[ChartBuilderServiceProvider::SERVICE_CHART_BUILDER_FACTORY];
 
             $application = new \Silex\Application();
-            $application->get('/', function () use ($templateEngine, $chartBuilderFactory) {
+            $application->get('/', function () use ($templateEngine, $factory) {
                 return $templateEngine->render('index.twig', [
-                    'anchorChartConfig' => $chartBuilderFactory->getChartBuilder('anchorChart')->buildChartConfig(),
-                    'linkStatusChartConfig' => $chartBuilderFactory->getChartBuilder('linkStatusChart')->buildChartConfig(),
-                    'fromUrlChartConfig' => $chartBuilderFactory->getChartBuilder('fromUrlChart')->buildChartConfig(),
+                    'anchorChartConfig' =>
+                        $factory->getChartBuilder('anchorChart')->buildChartConfig(),
+
+                    'linkStatusChartConfig' =>
+                        $factory->getChartBuilder('linkStatusChart')->buildChartConfig(),
+
+                    'fromUrlChartConfig' =>
+                        $factory->getChartBuilder('fromUrlChart')->buildChartConfig(),
+
+                    'bldomByRangeChartConfig' =>
+                        $factory->getChartBuilder('bldomByRangeChart')->buildChartConfig(),
                 ]);
             });
 

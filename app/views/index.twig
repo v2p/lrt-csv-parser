@@ -22,28 +22,66 @@
                 {{ anchorChartConfig | raw }}
             );
 
-            buildPieChart(
+            buildChart(
                 'linkStatusChart',
+                {
+                    "chart": {
+                        "plotBackgroundColor": null,
+                        "plotBorderWidth": null,
+                        "plotShadow": false,
+                        "animation": false,
+                        "type": "pie"
+                    },
+                    "title": false,
+                    "tooltip": {"pointFormat": "{point.percentage:.1f}%"},
+                    "plotOptions": {"pie": {"allowPointSelect": false, "dataLabels": false}}
+                },
                 {{ linkStatusChartConfig | raw }}
             );
 
-            buildPieChart(
+            buildChart(
                 "fromUrlChart",
+                {
+                    "chart": {
+                        "plotBackgroundColor": null,
+                        "plotBorderWidth": null,
+                        "plotShadow": false,
+                        "animation": false,
+                        "type": "pie"
+                    },
+                    "title": false,
+                    "tooltip": {"pointFormat": "{point.percentage:.1f}%"},
+                    "plotOptions": {
+                        "pie": {
+                            "allowPointSelect": false,
+                            "dataLabels": {
+                                "formatter": function() {
+                                    if (this.percentage > 7) {
+                                        return this.point.name;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 {{ fromUrlChartConfig | raw }}
             );
 
-            buildBarChart(
+            buildChart(
                 'bldomChart',
-                [{
-                    name: 'Year 1800',
-                    data: [107, 31, 635, 203, 2]
-                }, {
-                    name: 'Year 1900',
-                    data: [133, 156, 947, 408, 6]
-                }, {
-                    name: 'Year 2012',
-                    data: [1052, 954, 4250, 740, 38]
-                }]
+                {
+                    "chart": {
+                        "plotBackgroundColor": null,
+                        "plotBorderWidth": null,
+                        "plotShadow": false,
+                        "animation": false,
+                        "type": "column"
+                    },
+                    "title": false,
+                    "plotOptions": {"column": {"pointPadding": 0.2, "borderWidth": 0}},
+                    "legend": false
+                },
+                {{ bldomByRangeChartConfig | raw }}
             )
         });
     </script>

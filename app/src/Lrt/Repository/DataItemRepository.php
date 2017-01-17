@@ -79,6 +79,8 @@ SQL;
         FROM data_item
 SQL;
 
-        return $this->runSql($sql);
+        $data = $this->runSql($sql);
+
+        return !empty($data) ? $data[0] : [];
     }
 }

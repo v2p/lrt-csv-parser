@@ -2,11 +2,8 @@
 
 namespace Lrt\ChartBuilder\Types;
 
-use Lrt\ChartBuilder\PieChartAwareTrait;
-
 class FromUrlChartBuilder extends AbstractDataItemChartBuilder
 {
-    use PieChartAwareTrait;
 
     public function buildChartConfig()
     {
@@ -19,7 +16,7 @@ class FromUrlChartBuilder extends AbstractDataItemChartBuilder
             ];
         }, $allItems);
 
-        $config = $this->getPieChartDefaultConfiguration();
+        $config = [];
 
         $config['series'][0]['data'] = $data;
         $config['series'][0]['turboThreshold'] = 0;
