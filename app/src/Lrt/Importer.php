@@ -68,6 +68,6 @@ class Importer
             $this->logger->error($exception->getMessage());
         }
 
-        $this->logger->info('Process finished.');
+        $this->logger->info('Process finished');
     }
 }

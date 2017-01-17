@@ -44,7 +44,7 @@ class CommonServiceProvider extends AbstractServiceProvider
     {
         $container[self::SERVICE_LOGGER] = function () {
             $logger = new Logger('logger');
-            $loggerFormatter = new LineFormatter("[%datetime%] %message%\n");
+            $loggerFormatter = new LineFormatter("CSV Importer: [%datetime%] %message%\n");
 
             $infoHandler = new StreamHandler('php://stdout', Logger::INFO);
             $infoHandler->setFormatter($loggerFormatter);
