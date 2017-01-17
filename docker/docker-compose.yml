@@ -68,5 +68,10 @@ services:
       XDEBUG_REMOTE_HOST: ${XDEBUG_REMOTE_HOST}
       XDEBUG_IDE_KEY: ${XDEBUG_IDE_KEY}
 
+      MYSQL_HOST: ${MYSQL_HOST}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
 volumes:
   mysql-data-volume:
