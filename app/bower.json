@@ -1,0 +1,21 @@
+{
+  "name": "lrt-csv-parser",
+  "homepage": "https://github.com/v2p/lrt-csv-parser",
+  "authors": [
+    "Vladimir Posvistelik <v.posvistelik@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jqcloud2": "^2.0.2",
+    "highcharts": "^5.0.6"
+  }
+}

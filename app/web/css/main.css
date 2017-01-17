@@ -1,0 +1,11 @@
+.chart {
+    margin: 0 auto;
+    width: 450px;
+    height: 250px;
+    border-bottom: 1px solid #ccc;
+    padding: 20px 0;
+}
+
+.chart:last-of-type {
+    border-bottom: none;
+}

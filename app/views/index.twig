@@ -4,97 +4,94 @@
     <meta charset="UTF-8">
     <title>CSV Parser</title>
 
-    <style type="text/css">
-        .canvas-container {
-            /*width: 100%;*/
-        }
-    </style>
+    <link rel="stylesheet" href="/css/jqcloud.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jqcloud.min.js"></script>
+    <script type="text/javascript" src="/js/highcharts.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            buildTagsCloud(
+                $("#anchorTextChart"),
+                [
+                    {text: "Ipsum", weight: 10.5},
+                    {text: "Dolor", weight: 9.4}
+                ]
+            );
+
+            buildPieChart(
+                'linkStatusChart',
+                [{
+                    name: 'Microsoft Internet Explorer',
+                    y: 56.33
+                }, {
+                    name: 'Chrome',
+                    y: 24.03,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'Firefox',
+                    y: 10.38
+                }, {
+                    name: 'Safari',
+                    y: 4.77
+                }, {
+                    name: 'Opera',
+                    y: 0.91
+                }, {
+                    name: 'Proprietary or Undetectable',
+                    y: 0.2
+                }]
+            );
+
+            buildPieChart(
+                'fromUrlChart',
+                [{
+                    name: 'Microsoft Internet Explorer',
+                    y: 56.33
+                }, {
+                    name: 'Chrome',
+                    y: 24.03,
+                    sliced: true,
+                    selected: true
+                }, {
+                    name: 'Firefox',
+                    y: 10.38
+                }, {
+                    name: 'Safari',
+                    y: 4.77
+                }, {
+                    name: 'Opera',
+                    y: 0.91
+                }, {
+                    name: 'Proprietary or Undetectable',
+                    y: 0.2
+                }]
+            );
+
+            buildBarChart(
+                'bldomChart',
+                [{
+                    name: 'Year 1800',
+                    data: [107, 31, 635, 203, 2]
+                }, {
+                    name: 'Year 1900',
+                    data: [133, 156, 947, 408, 6]
+                }, {
+                    name: 'Year 2012',
+                    data: [1052, 954, 4250, 740, 38]
+                }]
+            )
+        });
+    </script>
 </head>
 <body>
-<div class="canvas-container">
-    <canvas id="anchorChart"></canvas>
-</div>
-<div class="canvas-container">
-    <canvas id="anchorChart3"></canvas>
-</div>
-<div class="canvas-container">
-    <canvas id="anchorChart2"></canvas>
-</div>
-<div class="canvas-container">
-    <canvas id="anchorChart4"></canvas>
-</div>
-
-<script type="text/javascript">
-    /**
-     * Document ready for ie8+
-     * @link http://youmightnotneedjquery.com/
-     * @param fn
-     */
-    function ready(fn) {
-        if (document.readyState != "loading"){
-            fn();
-
-        } else if (document.addEventListener) {
-            document.addEventListener("DOMContentLoaded", fn);
-
-        } else {
-            document.attachEvent("onreadystatechange", function() {
-                if (document.readyState != "loading") {
-                    fn();
-                }
-            });
-        }
-    }
-
-    function drawAnchorChart(canvasContext, data) {
-        new Chart(canvasContext, {
-            type: 'bar',
-            data: {
-                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                },
-                maintainAspectRatio: true
-            }
-        });
-    }
-
-    var anchorChartData = {{ anchorChartData|json_encode }};
-
-    ready(function() {
-        drawAnchorChart(document.getElementById("anchorChart"), anchorChartData);
-        drawAnchorChart(document.getElementById("anchorChart2"), anchorChartData);
-        drawAnchorChart(document.getElementById("anchorChart3"), anchorChartData);
-        drawAnchorChart(document.getElementById("anchorChart4"), anchorChartData);
-    });
-</script>
-<script type="text/javascript" src="js/Chart.min-v2.4.0.js"></script>
+    <div id="anchorTextChart" class="chart"></div>
+    <div id="linkStatusChart" class="chart"></div>
+    <div id="fromUrlChart" class="chart"></div>
+    <div id="bldomChart" class="chart"></div>
 </body>
 </html>
