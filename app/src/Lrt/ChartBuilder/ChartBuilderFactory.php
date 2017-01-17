@@ -3,6 +3,9 @@
 namespace Lrt\ChartBuilder;
 
 use Lrt\ChartBuilder\Exceptions\ChartBuilderNotFoundException;
+use Lrt\ChartBuilder\Types\AnchorTextChartBuilder;
+use Lrt\ChartBuilder\Types\FromUrlChartBuilder;
+use Lrt\ChartBuilder\Types\LinkStatusChartBuilder;
 use Lrt\Repository\DataItemRepository;
 
 class ChartBuilderFactory
@@ -28,6 +31,7 @@ class ChartBuilderFactory
         $this->chartBuilders = [
             'anchorChart' => new AnchorTextChartBuilder($this->dataItemRepository),
             'linkStatusChart' => new LinkStatusChartBuilder($this->dataItemRepository),
+            'fromUrlChart' => new FromUrlChartBuilder($this->dataItemRepository),
         ];
     }
 

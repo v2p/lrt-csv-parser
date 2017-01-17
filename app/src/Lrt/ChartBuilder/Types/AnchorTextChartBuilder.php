@@ -1,10 +1,10 @@
 <?php
 
-namespace Lrt\ChartBuilder;
+namespace Lrt\ChartBuilder\Types;
 
 class AnchorTextChartBuilder extends AbstractDataItemChartBuilder
 {
-    public function buildChartData()
+    public function buildChartConfig()
     {
         $allItems = $this->dataItemRepository->getAnchorsTextGrouped();
 
@@ -15,6 +15,10 @@ class AnchorTextChartBuilder extends AbstractDataItemChartBuilder
             ];
         }, $allItems);
 
-        return $this->toJson($data);
+        $config = [
+            'data' => $data
+        ];
+
+        return $this->toJson($config);
     }
 }

@@ -4,5 +4,5 @@ namespace Lrt\ChartBuilder;
 
 interface ChartBuilderInterface
 {
-    public function buildChartData();
+    public function buildChartConfig();
 }

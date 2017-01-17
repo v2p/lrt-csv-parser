@@ -9,44 +9,27 @@
 
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/jqcloud.min.js"></script>
+
     <script type="text/javascript" src="/js/highcharts.js"></script>
+    <script type="text/javascript" src="/js/highcharts/boost.js"></script>
+
     <script type="text/javascript" src="/js/main.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
             buildTagsCloud(
                 $("#anchorTextChart"),
-                {{ anchorChartData | raw }}
+                {{ anchorChartConfig | raw }}
             );
 
             buildPieChart(
                 'linkStatusChart',
-                {{ linkStatusChartData | raw }}
+                {{ linkStatusChartConfig | raw }}
             );
 
             buildPieChart(
-                'fromUrlChart',
-                [{
-                    name: 'Microsoft Internet Explorer',
-                    y: 56.33
-                }, {
-                    name: 'Chrome',
-                    y: 24.03,
-                    sliced: true,
-                    selected: true
-                }, {
-                    name: 'Firefox',
-                    y: 10.38
-                }, {
-                    name: 'Safari',
-                    y: 4.77
-                }, {
-                    name: 'Opera',
-                    y: 0.91
-                }, {
-                    name: 'Proprietary or Undetectable',
-                    y: 0.2
-                }]
+                "fromUrlChart",
+                {{ fromUrlChartConfig | raw }}
             );
 
             buildBarChart(

@@ -1,7 +1,8 @@
 <?php
 
-namespace Lrt\ChartBuilder;
+namespace Lrt\ChartBuilder\Types;
 
+use Lrt\ChartBuilder\ChartBuilderInterface;
 use Lrt\ChartBuilder\Exceptions\ChartDataProcessingException;
 use Lrt\Repository\DataItemRepository;
 
