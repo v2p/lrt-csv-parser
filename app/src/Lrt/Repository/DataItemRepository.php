@@ -32,7 +32,7 @@ SQL;
         $sql = <<<'SQL'
         SELECT 
           COUNT(*) AS count, 
-          link_status AS item                        
+          link_status AS text                        
         FROM data_item
         GROUP BY link_status
 SQL;

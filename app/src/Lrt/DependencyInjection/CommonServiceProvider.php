@@ -109,7 +109,8 @@ class CommonServiceProvider extends AbstractServiceProvider
             $application = new \Silex\Application();
             $application->get('/', function () use ($templateEngine, $chartBuilderFactory) {
                 return $templateEngine->render('index.twig', [
-                    'anchorChartData' => $chartBuilderFactory->getChartBuilder('anchorText')->buildChartData()
+                    'anchorChartData' => $chartBuilderFactory->getChartBuilder('anchorChart')->buildChartData(),
+                    'linkStatusChartData' => $chartBuilderFactory->getChartBuilder('linkStatusChart')->buildChartData(),
                 ]);
             });
 

@@ -26,7 +26,8 @@ class ChartBuilderFactory
     private function registerChartBuilders()
     {
         $this->chartBuilders = [
-            'anchorText' => new AnchorTextChartBuilder($this->dataItemRepository),
+            'anchorChart' => new AnchorTextChartBuilder($this->dataItemRepository),
+            'linkStatusChart' => new LinkStatusChartBuilder($this->dataItemRepository),
         ];
     }
 

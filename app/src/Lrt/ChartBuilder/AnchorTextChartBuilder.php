@@ -11,7 +11,7 @@ class AnchorTextChartBuilder extends AbstractDataItemChartBuilder
         $data = array_map(function($item) {
             return [
                 'text' => utf8_encode($item['text']),
-                'weight' => $item['count'],
+                'weight' => (int)$item['count'],
             ];
         }, $allItems);
 
