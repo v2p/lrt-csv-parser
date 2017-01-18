@@ -14,7 +14,6 @@ fi
 
 cd app &&
 php composer.phar install --no-dev &&
-php vendor/bin/doctrine orm:schema-tool:drop --force &&
-php vendor/bin/doctrine orm:schema-tool:update --force &&
+php vendor/bin/doctrine dbal:import data/db.sql &&
 php cli/main.php data/main.csv &&
 php -S ${WEB_HOST_TO_SERVE} -t web
