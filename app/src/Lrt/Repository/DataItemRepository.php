@@ -45,20 +45,8 @@ SQL;
         $sql = <<<'SQL'
         SELECT 
           COUNT(*) AS count,
-          SUBSTRING_INDEX(
-            REPLACE(
-              REPLACE(
-                REPLACE(
-                  from_url, 
-                  'http://' , ''
-                ), 
-                'https://', ''
-              ),
-              'www.', ''
-            ),
-            '/', 1
-          ) AS host                                  
-        FROM data_item
+          from_host AS host                                  
+        FROM data_item      
         GROUP BY host
 SQL;
 

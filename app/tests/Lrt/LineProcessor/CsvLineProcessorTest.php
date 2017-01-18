@@ -83,4 +83,33 @@ class CsvLineProcessorTest extends \PHPUnit_Framework_TestCase
             ["123,456", "123,456"],
         ]);
     }
+
+    /**
+     * @dataProvider providerForShouldParseFromHostProperly
+     * @param $line
+     * @param $expected
+     */
+    public function testShouldParseFromHostProperly($line, $expected)
+    {
+        $dataItem = $this->lineProcessor->createDataItem(self::ANY_VALID_LINE_INDEX, $line);
+
+        $this->assertEquals($expected, $dataItem->getFromHost());
+    }
+
+    public function providerForShouldParseFromHostProperly()
+    {
+        return $this->lineCasesGenerator(1, [
+            [null, ''],
+            ['domain', 'domain'],
+            ['domain.com', 'domain.com'],
+            ['www.domain.com', 'domain.com'],
+            ['https://www.domain.com', 'domain.com'],
+            ['http://www.domain.com', 'domain.com'],
+            ['http://www.domain.com/something', 'domain.com'],
+            ['http://www.domain.com/#', 'domain.com'],
+            ['http://www.domain.com/?', 'domain.com'],
+            ['http://www.domain.com/query=1&query=2', 'domain.com'],
+            ['domain.www.com', 'domain.www.com'],
+        ]);
+    }
 }

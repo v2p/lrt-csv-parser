@@ -6,7 +6,7 @@ Take a look at `run.sh`. Fill environment variables with proper values and execu
 necessary work. If your local system doesn't match the requirements, you see the error message with instructions given
 by `composer`.
 
-CSV file importing process takes about 10 seconds on my pretty average machine.
+CSV file importing process takes about 15 seconds on my pretty average machine.
 
 Example output in terminal:
 

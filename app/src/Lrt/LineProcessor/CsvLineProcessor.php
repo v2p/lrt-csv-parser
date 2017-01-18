@@ -46,10 +46,13 @@ class CsvLineProcessor implements LineProcessorInterface
             throw new NonValidLineException('Skip header line');
         }
 
+        $fromUrl = $this->extractValue(self::COLUMN_FROM_URL, $line);
+
         return new DataItem(
             $this->extractValue(self::COLUMN_ANCHOR_TEXT, $line),
             $this->extractValue(self::COLUMN_LINK_STATUS, $line),
-            $this->extractValue(self::COLUMN_FROM_URL, $line),
+            $fromUrl,
+            $this->parseHostFromUrl($fromUrl),
             $this->extractBLDom($line)
         );
     }
@@ -72,5 +75,20 @@ class CsvLineProcessor implements LineProcessorInterface
         $value = $this->extractValue(self::COLUMN_BLDOM, $line);
 
         return $this->decimalNumberFormatter->parse($value);
+    }
+
+    /**
+     * @param $url
+     * @return string
+     */
+    private function parseHostFromUrl($url)
+    {
+        if (strpos($url, '/') !== false) {
+            $host = parse_url($url, PHP_URL_HOST);
+        } else {
+            $host = $url;
+        }
+
+        return preg_replace('/^www./', '', $host);
     }
 }

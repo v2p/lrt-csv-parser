@@ -5,8 +5,10 @@ CREATE TABLE data_item (
   anchor_text LONGTEXT           NOT NULL,
   link_status VARCHAR(255)       NOT NULL,
   from_url    LONGTEXT           NOT NULL,
+  from_host   VARCHAR(255)       NOT NULL,
   bldom       NUMERIC(10, 4)     NOT NULL,
   INDEX link_status_idx (link_status),
+  INDEX from_host_idx (from_host),
   INDEX bldom_idx (bldom) USING BTREE,
   PRIMARY KEY (id)
 )

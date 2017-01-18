@@ -32,6 +32,11 @@ class DataItem
     private $fromUrl;
 
     /**
+     * @Column(type="text", name="from_host")
+     */
+    private $fromHost;
+
+    /**
      * @Column(type="decimal", precision=10, scale=4, name="bldom")
      */
     private $bLDom;
@@ -40,11 +45,13 @@ class DataItem
         $anchorText,
         $linkStatus,
         $fromUrl,
+        $fromHost,
         $bLDom
     ) {
         $this->anchorText = $anchorText;
         $this->linkStatus = $linkStatus;
         $this->fromUrl = $fromUrl;
+        $this->fromHost = $fromHost;
         $this->bLDom = $bLDom;
     }
 
@@ -110,6 +117,22 @@ class DataItem
     public function setFromUrl($fromUrl)
     {
         $this->fromUrl = $fromUrl;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFromHost()
+    {
+        return $this->fromHost;
+    }
+
+    /**
+     * @param mixed $fromHost
+     */
+    public function setFromHost($fromHost)
+    {
+        $this->fromHost = $fromHost;
     }
 
     /**
