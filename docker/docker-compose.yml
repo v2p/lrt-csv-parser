@@ -30,6 +30,7 @@ services:
   mysql-service:
     image: mysql:5.6
     volumes:
+      - ${REAL_PATH_TO_APP}/data/db.sql:/docker-entrypoint-initdb.d/db.sql
       - mysql-data-volume:/var/lib/mysql
     restart: on-failure
     environment:
