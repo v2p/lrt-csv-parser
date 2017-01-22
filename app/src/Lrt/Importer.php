@@ -53,6 +53,7 @@ class Importer
         $this->logger->info('Process started...');
 
         try {
+            $this->dataStorage->startImport();
             foreach ($this->importFileReader->readLines($inputFile) as $index => $line) {
                 try {
                     $dataItem = $this->lineProcessor->createDataItem($index, $line);
@@ -62,10 +63,10 @@ class Importer
                 }
             }
 
-            $this->dataStorage->flushChanges();
-
         } catch (ImportFileReaderExceptionInterface $exception) {
             $this->logger->error($exception->getMessage());
+        } finally {
+            $this->dataStorage->finishImport();
         }
 
         $this->logger->info('Process finished');

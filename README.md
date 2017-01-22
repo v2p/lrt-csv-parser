@@ -15,16 +15,13 @@ Example output in terminal:
     Installing dependencies from lock file
     Nothing to install or update
     Generating autoload files
-    Dropping database schema...
-    Database schema dropped successfully!
-    Updating database schema...
-    Database schema updated successfully! "1" query was executed
-    CSV Importer: [2017-01-18 00:01:59] Process started...
-    CSV Importer: [2017-01-18 00:01:59] Skip header line
-    CSV Importer: [2017-01-18 00:02:10] Process finished
-    PHP 7.0.13-0ubuntu0.16.04.1 Development Server started at Wed Jan 18 00:02:10 2017
+    Processing file 'app/data/db.sql'... OK!
+    
+    CSV Importer: [2017-01-22 21:34:09] Process started...
+    CSV Importer: [2017-01-22 21:34:09] Skip header line
+    CSV Importer: [2017-01-22 21:34:21] Process finished
+    PHP 7.0.13-0ubuntu0.16.04.1 Development Server started at Sun Jan 22 21:34:21 2017
     Listening on http://localhost:8081
-
 
 ### How to run tests
 

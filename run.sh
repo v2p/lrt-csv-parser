@@ -7,7 +7,7 @@ export MYSQL_USER=user
 export MYSQL_PASSWORD=password
 WEB_HOST_TO_SERVE=localhost:8081
 
-read -p "This script will clean \"${MYSQL_DATABASE}\" database on your MySQL server \"${MYSQL_HOST}\". Are you sure? (y/N) "
+read -p "This script will clean \"${MYSQL_DATABASE}\" database on your DB server \"${MYSQL_HOST}\". Are you sure? (y/N) "
 if [ "${REPLY}" != "y" ]; then
    exit;
 fi

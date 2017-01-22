@@ -8,5 +8,7 @@ interface DataStorageInterface
 {
     public function addDataItem(DataItem $dataItem);
 
-    public function flushChanges();
+    public function startImport();
+
+    public function finishImport();
 }
