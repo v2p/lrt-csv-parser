@@ -10,7 +10,7 @@ CSV file importing process takes about 15 seconds on my pretty average machine.
 
 Example output in terminal:
 
-    This script will clean "database" database on your MySQL server "localhost:3306". Are you sure? (y/N) y
+    This script will clean "database" database on your DB server "localhost:3306". Are you sure? (y/N) y
     Loading composer repositories with package information
     Installing dependencies from lock file
     Nothing to install or update

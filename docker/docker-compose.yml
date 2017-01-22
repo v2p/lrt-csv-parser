@@ -6,7 +6,7 @@ services:
       - ./configs/php-service/21-xdebug.ini:/etc/php/7.0/cli/conf.d/21-xdebug.ini:ro
       - ${REAL_PATH_TO_APP}:${CLI_CONTAINER_PATH_TO_APP}
     links:
-      - mysql-service
+      - mariadb-service
     environment:
       LOCAL_USER_ID: ${LOCAL_USER_ID}
       XDEBUG_REMOTE_HOST: ${XDEBUG_REMOTE_HOST}
@@ -27,11 +27,11 @@ services:
     environment:
       LOCAL_USER_ID: ${LOCAL_USER_ID}
 
-  mysql-service:
-    image: mysql:5.6
+  mariadb-service:
+    image: mariadb:10.1
     volumes:
       - ${REAL_PATH_TO_APP}/data/db.sql:/docker-entrypoint-initdb.d/db.sql
-      - mysql-data-volume:/var/lib/mysql
+      - mariadb-data-volume:/var/lib/mysql
     restart: on-failure
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
@@ -50,7 +50,6 @@ services:
       - fpm-service
     depends_on:
       - fpm-service
-      - mysql-service
     restart: on-failure
     ports:
       - "8080:8080"
@@ -62,7 +61,7 @@ services:
     volumes:
       - ${REAL_PATH_TO_APP}:${WEB_CONTAINER_PATH_TO_APP}
     links:
-      - mysql-service
+      - mariadb-service
     restart: on-failure
     environment:
       LOCAL_USER_ID: ${LOCAL_USER_ID}
@@ -75,4 +74,4 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
 
 volumes:
-  mysql-data-volume:
+  mariadb-data-volume:
