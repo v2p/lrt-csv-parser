@@ -6,4 +6,4 @@ else
     PASSED_ARGUMENTS="$@"
 fi
 
-runtime-env.sh docker-compose run --rm php-service php ${PASSED_ARGUMENTS}
+./runtime-env.sh docker-compose run --rm php-service php ${PASSED_ARGUMENTS}
