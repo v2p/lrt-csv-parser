@@ -50,16 +50,11 @@ services:
       - fpm-service
     depends_on:
       - fpm-service
-      - elk-service
     restart: on-failure
     ports:
       - "8080:8080"
     environment:
       LOCAL_USER_ID: ${LOCAL_USER_ID}
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "udp://localhost:5044"
 
   fpm-service:
     image: vposvistelik/php:fpm-7.0-dev
@@ -67,8 +62,6 @@ services:
       - ${REAL_PATH_TO_APP}:${WEB_CONTAINER_PATH_TO_APP}
     links:
       - mariadb-service
-    depends_on:
-      - elk-service
     restart: on-failure
     environment:
       LOCAL_USER_ID: ${LOCAL_USER_ID}
@@ -79,17 +72,6 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-    logging:
-      driver: gelf
-      options:
-        gelf-address: "udp://localhost:5044"
-
-  elk-service:
-    image: sebp/elk:512
-    ports:
-      - "5601:5601"
-      - "9200:9200"
-      - "5044:5044"
 
 volumes:
   mariadb-data-volume:
